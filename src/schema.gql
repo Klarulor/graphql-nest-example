@@ -1,0 +1,109 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type LoginResponseDTO {
+  access_token: String!
+}
+
+type RegisterResponseDTO {
+  access_token: String!
+}
+
+type GetUserResponseDTO {
+  id: Int!
+  username: String!
+  email: String!
+}
+
+type CreateUserResponseDTO {
+  id: Int!
+}
+
+type GetPhotoResponseDTO {
+  id: Int!
+  imageUrl: String
+}
+
+type GetLandmarkResponseDTO {
+  id: Int!
+  name: String!
+  description: String!
+  geo: String!
+  photos: [GetPhotoResponseDTO!]!
+  imageUrl: String
+}
+
+type CreateLandmarkResponseDTO {
+  id: Int!
+}
+
+type CreatePhotoResponseDTO {
+  id: Int!
+}
+
+type GetRatingResponseDTO {
+  id: Int!
+  creator_id: Int!
+  rating: Int!
+}
+
+type CreateRatingResponseDTO {
+  id: Int!
+}
+
+type Query {
+  hello: String!
+  getAll: [GetRatingResponseDTO!]!
+  getLandmarks: [GetLandmarkResponseDTO!]!
+  getFilteredLandmarks(min: Float!, max: Float!): [GetLandmarkResponseDTO!]!
+  getCountryFilteredLandmarks(country_id: Float!): [GetLandmarkResponseDTO!]!
+}
+
+type Mutation {
+  login(dto: LoginRequestDTO!): LoginResponseDTO!
+  register(dto: RegisterRequestDTO!): RegisterResponseDTO!
+  create(dto: CreateRatingRequestDTO!): CreateRatingResponseDTO!
+  update(id: Int!, dto: UpdateRatingRequestDTO!): Boolean!
+  delete(id: Int!): Boolean!
+  createLandmark(dto: CreateLandmarkRequestDTO!): CreateLandmarkResponseDTO!
+  updateLandmark(id: Float!, dto: UpdateLandmarkRequestDTO!): Boolean!
+  deleteLandmark(id: Float!): Boolean!
+}
+
+input LoginRequestDTO {
+  username: String!
+  password: String!
+}
+
+input RegisterRequestDTO {
+  username: String!
+  email: String!
+  rawPassword: String!
+}
+
+input CreateRatingRequestDTO {
+  rating: Float!
+}
+
+input UpdateRatingRequestDTO {
+  rating: Int!
+}
+
+input CreateLandmarkRequestDTO {
+  name: String!
+  description: String!
+  geo: String!
+  country_id: Int!
+  photo_ids: [Int!]
+  ratings_ids: [Int!]
+}
+
+input UpdateLandmarkRequestDTO {
+  name: String
+  description: String
+  geo: String
+  country_id: Int
+  photo_ids: [Int!]
+  ratings_ids: [Int!]
+}
